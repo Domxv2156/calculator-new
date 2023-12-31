@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-   
+   background-color: black;
 }
 
 button {
@@ -23,7 +23,7 @@ border: 1px solid transparent;
 border-radius: 0.5rem;
 cursor: pointer;
 color: aliceblue;
-font-size: 16px;
+font-size: 20px;
 font-weight: 600;
 font-family: system-ui,-apple-system,system-ui;
 }
@@ -41,12 +41,27 @@ button:active {
     grid-template-columns: repeat(4, 80px);
     grid-template-rows: repeat(6, 80px);
     gap: 6px;
-    
+    background-color: rgba(255, 255, 255, 0.87);
+    padding: 10px;
+    border-radius: 0.5rem;
+    height: 435px;
    
 }
+
 .dashboard {
     grid-column: 3/5;
     grid-row: 1/2;
+    align-self: center;
+    justify-self: center;
+    font-size: 30px;
+    font-family: system-ui,-apple-system,system-ui;
+}
+.currentNum {
+    margin-top: -5px;
+    margin-left: 20px;
+}
+.previousNum {
+  opacity: 40%;
 }
 .clear {
     grid-column: 1/3;
