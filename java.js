@@ -5,10 +5,12 @@ const decimalBtn = document.querySelector('.decimal')
 const equalBtn = document.querySelector('.equal')
 const previousDisplay = document.querySelector('.previousNum')
 const currentDisplay = document.querySelector('.currentNum')
+const backBtn = document.querySelector('.backSpace')
 
 let operator = "";
 let currentNum = "";
 let previousNum = "";
+
 
 function add(a, b) {
     return a + b;
@@ -24,30 +26,83 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if(b === 0) {
-        currentDisplay.textContent = "You can't divide by 0!"
+        currentDisplay.textContent = "retard"
+        
     } else {
-        result = a/b;
+        resultt = a/b;
     }
-    return result.toFixed(2)
+    return parseFloat(resultt.toFixed(2))
 }
 
-function operate(previousNum, currentNum,operator ) {
+function operate(previousNum, currentNum, operator ) {
     
    
     currentNum = Number(currentNum)
     previousNum = Number(previousNum)
     if(operator === '+') {
-       return add(previousNum, currentNum)
+       result = add(previousNum, currentNum)
+       currentDisplay.textContent = result;
+       previousDisplay.textContent = "";
        } else if(operator === '-') {
-    return subtract(previousNum, currentNum)
- } else if(operator === '/') {
-   return divide(previousNum, currentNum) 
- } else if(operator === '*') {
-   return multiply(previousNum, currentNum)
- } else {
-    currentDisplay.textContent = "Error"
- }
- 
+    result = subtract(previousNum, currentNum)
+    currentDisplay.textContent = result;
+       previousDisplay.textContent = "";
+ } else if(operator === '➗') {
+   result = divide(previousNum, currentNum) 
+   currentDisplay.textContent = result;
+       previousDisplay.textContent = "";
+ } else if(operator === 'x') {
+   result = multiply(previousNum, currentNum)
+   currentDisplay.textContent = result;
+       previousDisplay.textContent = "";
+ } 
+
 }
 
-console.log(operate(3, 4, '-'))
+numberBtn.forEach(button => button.addEventListener('click', function(event) {
+    if(currentNum.length <=5) {
+  currentNum += event.target.innerHTML;
+  currentDisplay.textContent = currentNum;
+}
+}))
+
+operatorBtn.forEach(opButton => opButton.addEventListener('click', function(event) {
+    if(operator == "" && currentNum != "") {
+operator += event.target.innerHTML;
+previousNum += currentNum;
+previousDisplay.textContent = operator + previousNum;
+currentNum = "";
+currentDisplay.textContent = currentNum = "";
+}
+}))
+
+equalBtn.addEventListener('click', () => {
+    if (previousNum != "" && currentNum != "" && operator !="") {
+    operate(previousNum, currentNum, operator)
+    previousNum = "";
+    operator = "";
+    currentNum = result;
+}
+})
+
+decimalBtn.addEventListener('click', () => {
+    if (!currentNum.includes('.') && currentNum != "") {
+        currentNum += '.';
+        currentDisplay.textContent = currentNum;
+} 
+})
+
+backBtn.addEventListener('.click', () => {
+ 
+})
+
+
+
+clearBtn.addEventListener('click', () => {
+    previousNum = "";
+    operator = "";
+    currentNum = "";
+    currentDisplay.textContent = currentNum;
+    previousDisplay.textContent = previousNum;
+})
+
